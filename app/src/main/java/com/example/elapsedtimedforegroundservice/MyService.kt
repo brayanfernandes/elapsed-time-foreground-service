@@ -59,9 +59,9 @@ class MyService : Service() {
         job = coroutineScope.launch {
             while (isActive) {
                 elapsedTime += 1
+                createNotification(update=true)
                 delay(1000L)
                 Log.d(TAG, elapsedTime.toString())
-                createNotification(true)
             }
         }
     }
@@ -84,7 +84,7 @@ class MyService : Service() {
         notificationManager.createNotificationChannel(mChannel)
     }
 
-    private fun createNotification(isUpdating:Boolean = false) {
+    private fun createNotification(update:Boolean = false) {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val pendindIntent: PendingIntent = Intent(
             this,
@@ -109,7 +109,7 @@ class MyService : Service() {
             .setContentIntent(pendindIntent)
             .addAction(R.drawable.ic_baseline_stop_circle_24,"Stop",stopPendingIntent)
             .build()
-        if(isUpdating){
+        if(update){
             notificationManager.notify(NOTIFICATION_ID,notification)
         }
         else{
