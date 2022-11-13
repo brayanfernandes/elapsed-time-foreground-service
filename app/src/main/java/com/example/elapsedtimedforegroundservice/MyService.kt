@@ -7,7 +7,6 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.*
-import java.time.Duration
 
 
 private const val TAG = "MyService"
